@@ -1,0 +1,36 @@
+server:
+    http_listen_port: 9080
+    grpc_listen_port: 0
+    log_level: "debug"
+
+positions:
+    filename: /tmp/positions.yaml
+
+clients:
+    - url: http://loki-gateway:80/loki/api/v1/push
+
+scrape_configs:
+  - job_name: system
+    static_configs:
+    - targets:
+        - localhost
+      labels:
+        job: varlogs
+        __path__: /var/log/*log
+
+  - job_name: apache_log
+    static_configs:
+    - targets:
+        - localhost
+      labels:
+        job: apache_log
+        __path__: /var/log/apache2/*.log
+
+  - job_name: nginx
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: nginx_log
+          __path__: /var/log/nginx/*log
+
