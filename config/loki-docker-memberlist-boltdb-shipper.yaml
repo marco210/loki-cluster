@@ -80,7 +80,7 @@ chunk_store_config:
 
 table_manager:
   retention_deletes_enabled: true
-  retention_period: 24h
+  retention_period: 24h     # thoi gian xoa log tu dong
 
 query_range:
   # make queries more cache-able by aligning them with their step intervals
